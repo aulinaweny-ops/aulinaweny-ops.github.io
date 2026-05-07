@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tugas-bootstrap-1117</title>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #111, #000);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gold { color: #f5c16c; }
+        .title-font { font-family: 'Playfair Display', serif; }
+
+        .glow-title {
+            color: #f5c16c;
+            text-shadow:
+            0 0 10px rgba(245,193,108,0.5),
+            0 0 15px rgba(245,193,108,0.3);
+        }
+        
+        .navbar {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+        
+        .hero h1 {
+            font-size: 55px;
+        }
+        
+        .glass {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(6px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+        
+        .carousel-box {
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 40px;
+        }
+
+        .carousel-box p {
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #777;
+        }
+        
+        .carousel-indicators .active {
+            background-color: #f5c16c;
+        }
+        
+        .album-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: 0.4s;
+        }
+
+        .album-img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        
+        .feature-card {
+            padding: 25px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 20px rgba(245,193,108,0.2);
+        }
+
+        .feature-card p {
+            min-height: 50px;
+        }
+        
+        .btn-gold {
+            border: 1px solid #f5c16c;
+            color: #f5c16c;
+        }
+        
+        .btn-gold:hover {
+            background: #f5c16c;
+            color: black;
+        }
+        
+        .player {
+            padding: 20px;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            font-size: 15px;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom mb-4 px-3">
+            <div class="container-fluid">
+                <div class="navbar-nav d-flex gap-3">
+                    <span id="btnProfil" class="nav-link gold">👤 Lihat Profil</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="text-center hero mb-4">
+            <h1 class="title-font glow-title">About You</h1>
+            <p class="title-font glow-title" style="font-size: 27px">— The 1975 —</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-8">
+                <div id="carouselExample" class="carousel slide glass carousel-box text-center" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <p>"Di bumi, selalu ada seseorang yang hanya bisa dikagumi tapi tidak bisa dimiliki"</p>
+                            <small class="text-secondary">-3726 mdpl</small>
+                        </div>
+                        <div class="carousel-item">
+                            <p>"Some people stay in your mind, not in your life."</p>
+                        </div>
+                        <div class="carousel-item">
+                            <p>"We were strangers again, but with memories."</p>
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <button data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></button>
+                        <button data-bs-target="#carouselExample" data-bs-slide-to="1"></button>
+                        <button data-bs-target="#carouselExample" data-bs-slide-to="2"></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="glass p-3 text-center">
+                    <img src="assets/img/about-you.webp" class="album-img">
+                    <h5 class="gold mt-3">The 1975</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4 g-3">
+
+            <div class="col-md-4">
+                <div class="glass feature-card">
+                    <h5 class="gold">🎶 Listen Now</h5>
+                    <p>Dengarkan lagu “About You” sekarang di Spotify.</p>
+                    <button class="btn btn-gold" onclick="openMusic()">Listen</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass feature-card">
+                    <h5 class="gold">📝 Lyrics</h5>
+                    <p>Lihat lirik dari lagu “About You”.</p>
+                    <button class="btn btn-gold" data-bs-toggle="modal" data-bs-target="#lyricsModal">Read Lyrics</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass feature-card">
+                    <h5 class="gold">🎧 Playlist</h5>
+                    <p>Dengarkan playlist terbaik dari The 1975.</p>
+                    <button class="btn btn-gold" onclick="openPlaylist()">Buka Playlist</button>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="glass player text-center gold">
+            🎧 Currently Playing • About You — The 1975
+        </div>
+        
+        <div class="text-center text-secondary mt-3">
+            © 2026 | Musik adalah bahasa yang tidak pernah berbohong.
+        </div>
+    </div>
+
+    <div class="modal fade" id="lyricsModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white" style="background: rgba(20,20,20,0.95); backdrop-filter: blur(10px);">                <div class="modal-header border-0">
+                    <h5 class="modal-title gold">Lyrics - About You</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                    <p style="font-style: italic; color: #ddd; line-height: 1.9; letter-spacing: 0.5px;">                        I know a place<br>
+                        It's somewhere I go when I need to remember your face<br>
+                        We get married in our heads<br>
+                        Something to do whilst we try to recall how we met<br><br>
+                        
+                        Do you think I have forgotten?<br>
+                        Do you think I have forgotten?<br>
+                        Do you think I have forgotten about you?<br><br>
+                        
+                        You and I<br>
+                        Were alive<br>
+                        With nothing to do I could lay and just look in your eyes<br>
+                        Wait and pretend<br>
+                        Hold on and hope that we'll find our way back in the end<br><br>
+                        
+                        Do you think I have forgotten?<br>
+                        Do you think I have forgotten?<br>
+                        Do you think I have forgotten about you?<br>
+                        Do you think I have forgotten?<br>
+                        Do you think I have forgotten?<br>
+                        Do you think I have forgotten about you?<br><br>
+                        
+                        There was something about you that now I can't remember<br>
+                        It's the same damn thing that made my heart surrender<br>
+                        And I'll miss you on a train<br>
+                        I'll miss you in the morning<br>
+                        I never know what to think about, so think about you<br>
+                        (I think about you)<br>
+                        About you...<br>
+                        Do you think I have forgotten about you?<br>
+                        About you...<br>
+                        About you...<br>
+                        Do you think I have forgotten about you?<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+    
+<script>
+    function openProfil() {
+        window.open("https://www.instagram.com/the1975/", "_blank");
+    }
+    
+    function openPlaylist() {
+        window.open("https://open.spotify.com/playlist/2ggitti6kPhCgALkzhFe9V?si=3Pmin4gsQfupqBIcpBi2Gw&pi=d0p-MKQwQtuK3", "_blank");
+    }
+    
+    function openMusic() {
+        window.open("https://open.spotify.com/track/3hEfpBHxgieRLz4t3kLNEg", "_blank");
+    }
+    
+    document.getElementById("btnProfil").onclick = openProfil;
+</script>
+    
+</body>
+</html>
